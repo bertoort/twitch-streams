@@ -2,7 +2,7 @@
   {{template "header.tmpl.html"}}
 <body>
   {{range $key, $game := .games}}
-        <p> {{$game}} </p>
-      {{ end }}
+    <p> {{$game.game.name}} </p>
+  {{ end }}
 </body>
 </html>

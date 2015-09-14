@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	// "time"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 )
@@ -18,6 +19,13 @@ import (
 // 	Name string
 // 	Time time.Time
 // }
+
+// Twitch is the json from top games
+type Twitch struct {
+	Total int                      `json:"_total"`
+	Links map[string]interface{}   `json:"_links"`
+	Top   []map[string]interface{} `json:"top"`
+}
 
 func main() {
 	// lab := os.Getenv("MONGOLAB_URI")
@@ -47,8 +55,7 @@ func main() {
 	})
 
 	r.GET("/browse", func(c *gin.Context) {
-		url := "https://reddit.com/.json"
-		// url := "https://api.twitch.tv/kraken/games/top"
+		url := "https://api.twitch.tv/kraken/games/top"
 		req, err := http.NewRequest("GET", url, nil)
 		req.Header.Set("Content-Type", "application/json")
 		client := &http.Client{}
@@ -58,10 +65,14 @@ func main() {
 		}
 		defer resp.Body.Close()
 		body, _ := ioutil.ReadAll(resp.Body)
-		fmt.Println(string(body))
-		// fmt.Printf("%T", string(body))
+		dat := &Twitch{}
+		if err := json.Unmarshal([]byte(body), &dat); err != nil {
+			panic(err)
+		}
+		// games := dat["top"].([]interface{})
+		fmt.Println(dat.Top)
 		c.HTML(http.StatusOK, "browse.tmpl.html", gin.H{
-			"games": body,
+			"games": dat.Top,
 		})
 	})
 
