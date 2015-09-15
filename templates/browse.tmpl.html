@@ -1,8 +1,23 @@
 <html>
   {{template "header.tmpl.html"}}
 <body>
-  {{range $key, $game := .games}}
-    <p> {{$game.game.name}} </p>
-  {{ end }}
+  <div class="container">
+    <h1 class='title'>Top Games</h1>
+    <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5">
+      {{range $key, $game := .games}}
+        <li>
+          <a href={{ print "/browse/" $game.game.name}}>
+          <img class='gameCover' src={{$game.game.box.large}} alt={{$game.game.name}} />
+          </a>
+          <div class="name">
+            {{$game.game.name}}
+          </div>
+          <div class="viewers">
+            {{$game.viewers}} viewers
+          </div>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
 </body>
 </html>

@@ -1,3 +1,34 @@
 body {
-  background: rebeccapurple; 
+  background: rebeccapurple;
+}
+
+.container {
+  padding: 50px;
+  padding-top: 0;
+}
+
+
+
+/*********************/
+/********Browse*******/
+/*********************/
+
+.viewers {
+  color: #999;
+}
+
+.gameCover {
+  background: black;
+}
+
+.gameCover:hover {
+  opacity: .8
+}
+
+.add {
+  margin-bottom: 0
+}
+
+.title, .message {
+  text-align: center;
 }

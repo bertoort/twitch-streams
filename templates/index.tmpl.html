@@ -1,6 +1,18 @@
 <html>
   {{template "header.tmpl.html"}}
 <body>
-  
+  <div class="container">
+    <h1 class='title'>Streams Added</h1>
+    {{ $length := len .streams }}
+    {{if eq $length 0}}
+      <p class='message'>
+        No streams added yet. Please browse or search for your favorite streams!
+      </p>
+    {{else }}
+      {{range $key, $stream := .streams}}
+        <li> {{$stream.Name}} </li>
+      {{ end }}
+    {{end}}
+  </div>
 </body>
 </html>
