@@ -3,22 +3,55 @@ body {
 }
 
 .container {
-  padding: 50px;
+  padding: 3%;
   padding-top: 0;
 }
 
+.viewers {
+  color: #F5F5F5;
+  display: inline-block;
+}
 
+.name {
+  height: 20px;
+  overflow: hidden;
+}
+
+
+.title, .message {
+  text-align: center;
+  color: #F5F5F5;
+}
+
+/*********************/
+/********Index*******/
+/*********************/
+
+th:nth-child(3n+1), td:nth-child(3n+1) {
+  text-align: center
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.share {
+  width: 100%;
+}
+
+.destroy {
+  width: 40px;
+  margin: 0;
+  padding: 10%;
+}
 
 /*********************/
 /********Browse*******/
 /*********************/
 
-.viewers {
-  color: #999;
-}
-
-.gameCover {
-  background: black;
+.logoCover {
+  width: 60px;
+  height: 60px;
 }
 
 .gameCover:hover {
@@ -27,8 +60,4 @@ body {
 
 .add {
   margin-bottom: 0
-}
-
-.title, .message {
-  text-align: center;
 }

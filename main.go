@@ -19,6 +19,12 @@ type Stream struct {
 	Name string
 	Game string
 	URL  string
+	Logo string
+}
+
+// Name is the stream structure to whicy by remove
+type Name struct {
+	Name string
 }
 
 // Twitch is the json from top games
@@ -37,7 +43,7 @@ type Streams struct {
 
 func main() {
 	lab := os.Getenv("MONGOLAB_URI")
-	db := os.Getenv("DATBASE_NAME")
+	db := os.Getenv("DATABASE_NAME")
 
 	session, err := mgo.Dial(lab)
 	col := session.DB(db).C("streams")
@@ -115,7 +121,17 @@ func main() {
 		name := c.PostForm("name")
 		game := c.PostForm("game")
 		url := c.PostForm("url")
-		err = col.Insert(&Stream{Name: name, Game: game, URL: url})
+		logo := c.PostForm("logo")
+		err = col.Insert(&Stream{Name: name, Game: game, URL: url, Logo: logo})
+		if err != nil {
+			panic(err)
+		}
+		c.Redirect(http.StatusMovedPermanently, "/")
+	})
+
+	r.POST("/removeStream", func(c *gin.Context) {
+		name := c.PostForm("name")
+		err = col.Remove(&Name{Name: name})
 		if err != nil {
 			panic(err)
 		}

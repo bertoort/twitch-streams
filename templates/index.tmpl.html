@@ -1,17 +1,63 @@
 <html>
-  {{template "header.tmpl.html"}}
+{{template "header.tmpl.html"}}
 <body>
   <div class="container">
-    <h1 class='title'>Streams Added</h1>
+    <h1 class='title'>Favorite Streams</h1>
     {{ $length := len .streams }}
     {{if eq $length 0}}
-      <p class='message'>
-        No streams added yet. Please browse or search for your favorite streams!
-      </p>
-    {{else }}
-      {{range $key, $stream := .streams}}
-        <li> {{$stream.Name}} </li>
-      {{ end }}
+    <p class='message'>
+      No streams added yet. Please browse or search for your favorite streams!
+    </p>
+    {{else}}
+      <table>
+        <thead>
+          <tr>
+            <th width='150'>Stream</th>
+            <th width='450'>Name</th>
+            <th width='450'>Game</th>
+            <th width='100'>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range $key, $stream := .streams}}
+            <tr>
+              {{ $length := len $stream.Logo }}
+              {{if eq $length 0}}
+              <td>
+                <a href={{$stream.URL}}>
+                  <img class='logoCover' src="http://blogs-images.forbes.com/insertcoin/files/2013/02/twitch.jpg" alt={{$stream.Name}} />
+                </a>
+              </td>
+              {{else}}
+              <td>
+                <a href={{$stream.URL}}>
+                  <img class='logoCover' src={{$stream.Logo}} alt={{$stream.Name}} />
+                </a>
+              </td>
+              {{end}}
+              <td>{{$stream.Name}}</td>
+              <td>
+                <a href={{print "/browse/" $stream.Game}}>
+                {{$stream.Game}}
+                </a>
+              </td>
+              <td>
+                <form action="/removeStream" method="post">
+                  <input type="hidden" name="name" value={{$stream.Name}}>
+                  <input type="submit" class='button alert destroy' name="name" value="X">
+                </form>
+              </td>
+            </tr>
+          {{ end }}
+        </tbody>
+      </table>
+      <div class="name">
+      </div>
+      <div class="row">
+        <div class="small-3 small-centered columns">
+          <button type="button" class="warning share" name="button">Share List</button>
+        </div>
+      </div>
     {{end}}
   </div>
 </body>
