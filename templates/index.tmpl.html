@@ -13,8 +13,9 @@
         <thead>
           <tr>
             <th width='150'>Stream</th>
-            <th width='450'>Name</th>
-            <th width='450'>Game</th>
+            <th width='100'>Live</th>
+            <th width='350'>Name</th>
+            <th width='400'>Game</th>
             <th width='100'>Remove</th>
           </tr>
         </thead>
@@ -35,7 +36,12 @@
                 </a>
               </td>
               {{end}}
-              <td>{{$stream.Name}}</td>
+              <td>
+                <div class={{ print $stream.Name "Status"}} style='color: #F04124; font-size: 200%'>
+                  &#9679;
+                </div>
+              </td>
+              <td class="streamName">{{$stream.Name}}</td>
               <td>
                 <a href={{print "/browse/" $stream.Game}}>
                 {{$stream.Game}}

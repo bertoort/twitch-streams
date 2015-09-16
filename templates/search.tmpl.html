@@ -1,6 +1,35 @@
 <html>
   {{template "header.tmpl.html"}}
 <body>
-  
+  <div class="container">
+    <h1 class='title'>{{.search}}</h1>
+    <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5">
+      {{range $key, $stream := .streams}}
+        <li>
+          <a href={{$stream.channel.url}}>
+          {{if $stream.channel.logo}}
+            <img class='gameCover' src={{$stream.channel.logo}} alt={{$stream.channel.name}} />
+          {{else}}
+            <img class='gameCover' src="http://blogs-images.forbes.com/insertcoin/files/2013/02/twitch.jpg" alt={{$stream.channel.name}} />
+          {{end}}
+          </a>
+          <form action="/addStream" method="post">
+            <input type="hidden" name="name" value={{$stream.channel.name}}>
+            <input type="hidden" name="game" value={{$stream.channel.game}}>
+            <input type="hidden" name="url" value={{$stream.channel.url}}>
+            <input type="hidden" name="logo" value={{$stream.channel.logo}}>
+            <input type="submit" class='button warning small-12 large-12 add' value="add">
+          </form>
+          <div class="name">
+            {{$stream.channel.name}}
+          </div>
+          <div class="viewers">
+            {{$stream.viewers}}
+          </div>
+           viewers
+        </li>
+      {{ end }}
+    </ul>
+  </div>
 </body>
 </html>

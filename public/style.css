@@ -23,11 +23,19 @@ body {
   color: #F5F5F5;
 }
 
+.searchInput {
+  padding-right: 0
+}
+
+.searchButton {
+  padding-left: 0
+}
+
 /*********************/
 /********Index*******/
 /*********************/
 
-th:nth-child(3n+1), td:nth-child(3n+1) {
+th:nth-child(4n+1), td:nth-child(4n+1) {
   text-align: center
 }
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	// "fmt"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -10,7 +11,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	// "fmt"
 )
 
 // Stream is the stream mongo structure
@@ -110,7 +110,24 @@ func main() {
 	})
 
 	r.GET("/search", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "search.tmpl.html", nil)
+		search := c.Query("stream")
+		url := "https://api.twitch.tv/kraken/search/streams?q=" + strings.Replace(search, " ", "%20", -1) + "&limit=25"
+		req, err := http.NewRequest("GET", url, nil)
+		req.Header.Set("Content-Type", "application/json")
+		client := &http.Client{}
+		resp, err := client.Do(req)
+		if err != nil {
+			panic(err)
+		}
+		defer resp.Body.Close()
+		body, _ := ioutil.ReadAll(resp.Body)
+		dat := &Streams{}
+		if err := json.Unmarshal([]byte(body), &dat); err != nil {
+			panic(err)
+		}
+		c.HTML(http.StatusOK, "search.tmpl.html", gin.H{
+			"streams": dat.Streams, "search": search,
+		})
 	})
 
 	r.GET("/about", func(c *gin.Context) {
