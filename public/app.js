@@ -1,3 +1,5 @@
+$(document).foundation();
+
 $(document).ready(function () {
   var streams = $('.streamName')
   for (var i = 0; i < streams.length; i++) {

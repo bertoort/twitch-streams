@@ -61,10 +61,26 @@
       </div>
       <div class="row">
         <div class="small-3 small-centered columns">
-          <button type="button" class="warning share" name="button">Share List</button>
+          <a href='#' type="button" data-reveal-id="myModal" class="button warning share" name="button">Share List</a>
         </div>
       </div>
     {{end}}
   </div>
+  <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">Email</h2>
+    <form action="/mail" method="post">
+      <input type="email" name="from" placeholder="from: foo@bar.com">
+      <input type="email" name="to" placeholder="to: bar@foo.com">
+      <input type="text" name="subject" placeholder="subject: Check it out!" value="My Favorite Streams">
+      <textarea name="body" rows="8" cols="40" placeholder="Additional Comments..."></textarea>
+      <div class="row">
+        <div class="small-3 small-centered">
+          <input type="submit" class="button warning" value="Send">
+        </div>
+      </div>
+    </form>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+  {{template "footer.tmpl.html"}}
 </body>
 </html>

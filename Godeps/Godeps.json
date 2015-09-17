@@ -1,0 +1,43 @@
+{
+	"ImportPath": "github.com/bertoort/twitch-streams",
+	"GoVersion": "go1.5.1",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gin-gonic/gin",
+			"Comment": "v1.0rc1-143-g704d690",
+			"Rev": "704d690ac0e25fcd060ff82f75f913e879e65a3c"
+		},
+		{
+			"ImportPath": "github.com/manucorporat/sse",
+			"Rev": "fe6ea2c8e398672518ef204bf0fbd9af858d0e15"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Rev": "40e4aedc8fabf8c23e040057540867186712faa5"
+		},
+		{
+			"ImportPath": "github.com/sendgrid/sendgrid-go",
+			"Comment": "v2.0.0-3-g186c04a",
+			"Rev": "186c04acda510e050536deda27d578d80afe775d"
+		},
+		{
+			"ImportPath": "github.com/sendgrid/smtpapi-go",
+			"Comment": "v0.4.0",
+			"Rev": "08102729bcf72bfe74dde6c0da8e0423e94090ca"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "ea47fc708ee3e20177f3ca3716217c4ab75942cb"
+		},
+		{
+			"ImportPath": "gopkg.in/bluesuncorp/validator.v5",
+			"Comment": "v5.11",
+			"Rev": "98121ac23ff3d764f525d18d8de944d150e3c0fe"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2",
+			"Comment": "r2015.06.03-5-g22287ba",
+			"Rev": "22287bab4379e1fbf6002fb4eb769888f3fb224c"
+		}
+	]
+}

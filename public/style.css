@@ -69,3 +69,7 @@ table {
 .add {
   margin-bottom: 0
 }
+
+table {
+  margin: 0 auto;
+}

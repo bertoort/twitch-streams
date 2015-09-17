@@ -2,8 +2,9 @@ package main
 
 import (
 	"encoding/json"
-	// "fmt"
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/sendgrid/sendgrid-go"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"io/ioutil"
@@ -151,6 +152,29 @@ func main() {
 		err = col.Remove(&Name{Name: name})
 		if err != nil {
 			panic(err)
+		}
+		c.Redirect(http.StatusMovedPermanently, "/")
+	})
+
+	r.POST("/mail", func(c *gin.Context) {
+		key := os.Getenv("SENDGRID_KEY")
+		var results []Stream
+		col.Find(nil).All(&results)
+		fmt.Printf("results: %v", results)
+		from := c.PostForm("from")
+		to := c.PostForm("to")
+		subject := c.PostForm("subject")
+		body := c.PostForm("body")
+		sg := sendgrid.NewSendGridClientWithApiKey(key)
+		message := sendgrid.NewMail()
+		message.AddTo(to)
+		message.SetSubject(subject)
+		message.SetText(body)
+		message.SetFrom(from)
+		if r := sg.Send(message); r == nil {
+			fmt.Println("Email sent!")
+		} else {
+			fmt.Println(r)
 		}
 		c.Redirect(http.StatusMovedPermanently, "/")
 	})
