@@ -9,4 +9,9 @@ Follow streams on Twitch? This app allows you to search and browse through your 
 - Golang
 - Gin
 - MongoDB
-- SendGrid
+- Go-SendGrid
+
+### Tracker
+
+- Enable sharing through email
+- Format sent email to include streams in list form
