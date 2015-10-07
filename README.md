@@ -4,6 +4,10 @@ Follow streams on Twitch? This app allows you to search and browse through your 
 
 [Heroku link](https://infinite-woodland-7702.herokuapp.com/)
 
+### Preview
+
+[![Click to view video introduction](https://i.ytimg.com/vi_webp/UWUDjhpP8uw/mqdefault.webp)](https://www.youtube.com/watch?v=UWUDjhpP8uw"Quick Intro")
+
 ### Technologies
 
 - Golang
